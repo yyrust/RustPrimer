@@ -85,14 +85,14 @@ struct A(i32);
 impl Add for A {
     type Output = A;
     fn add(self, rhs: A) -> A {
-        A(self.0 - rhs.0)
+        A(self.0 + rhs.0)
     }
 }
 
 impl Sub for A {
     type Output = A;
     fn sub(self, rhs: A) -> A{
-        A(self.0 + rhs.0)
+        A(self.0 - rhs.0)
     }
 }
 
@@ -104,14 +104,13 @@ fn main() {
     let a4 = a1 - a2;
     println!("{}", (a4).0);
 }
-
 ```
 
 output:
 
 ```
-5
 15
+5
 ```
 
 # 格式化字符串
