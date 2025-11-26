@@ -20,7 +20,7 @@ fn main() {
 }
 ```
 
-`x: &Foo`其中`x`是一个trait对象，用指针的目的是因为，`x`可以是任意实现`Foo`的类型实例，内存大小并不确定，但指针的大小是固定的。
+`x: &Foo`其中`x`是一个trait对象，这里用指针是因为`x`可以是任意实现`Foo`的类型实例，内存大小并不确定，但指针的大小是固定的。
 
 ## trait对象的实现
 
@@ -136,7 +136,7 @@ pub trait Clone: Sized {
 }
 ```
 
-虽然`Clone`本身集成了`Sized`这个trait，但是它的方法`fn clone(&self) -> Self`和`fn clone_from(&mut self, source: &Self) { ... }`含有`Self`类型，而在使用trait对象方法的时候**Rust**是动态派发的，我们根本不知道这个trait对象的实际类型，它可以是任何一个实现了该trait的类型的值，所以`Self`在这里的大小不是`Self: Sized`的，这样的情况在**Rust**中被称为`object-unsafe`或者`not object-safe`，这样的trait是不能成为trait对象的。
+虽然`Clone`本身继承了`Sized`这个trait，但是它的方法`fn clone(&self) -> Self`和`fn clone_from(&mut self, source: &Self) { ... }`含有`Self`类型，而在使用trait对象方法的时候**Rust**是动态派发的，我们根本不知道这个trait对象的实际类型，它可以是任何一个实现了该trait的类型的值，所以`Self`在这里的大小不是`Self: Sized`的，这样的情况在**Rust**中被称为`object-unsafe`或者`not object-safe`，这样的trait是不能成为trait对象的。
 
 总结：
 
